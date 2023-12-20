@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Remarkablemark\RectorTemplate\ExampleRector;
+use Remarkablemark\RectorLaravelDatabaseExpressions\LaravelDatabaseExpressionsRector;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->rule(ExampleRector::class);
+    $rectorConfig->rule(LaravelDatabaseExpressionsRector::class);
 };

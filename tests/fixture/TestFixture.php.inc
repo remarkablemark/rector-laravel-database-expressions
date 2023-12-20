@@ -1,27 +1,27 @@
 <?php
 
-namespace Package\Tests\Rector\MyFirstRector\Fixture;
+declare(strict_types=1);
 
-class SomeClass
-{
-    public function handlePasswordChange(User $user, string $password)
-    {
-        $user->setPassword($password);
-    }
-}
+use Illuminate\Support\Facades\DB;
 
-?>
+DB::select(DB::raw('select 1'));
+
+DB::select(
+    DB::raw('select 2')
+);
+
+$db->select(DB::raw('select 3'));
 -----
 <?php
 
-namespace Package\Tests\Rector\MyFirstRector\Fixture;
+declare(strict_types=1);
 
-class SomeClass
-{
-    public function handlePasswordChange(User $user, string $password)
-    {
-        $user->changePassword($password);
-    }
-}
+use Illuminate\Support\Facades\DB;
 
-?>
+DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));
+
+DB::select(
+    DB::raw('select 2')->getValue(DB::getQueryGrammar())
+);
+
+$db->select(DB::raw('select 3')->getValue(DB::getQueryGrammar()));
