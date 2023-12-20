@@ -5,6 +5,7 @@
     "keywords": [
         "rector",
         "refactor",
+        "codemod",
         "laravel",
         "database",
         "expressions"
