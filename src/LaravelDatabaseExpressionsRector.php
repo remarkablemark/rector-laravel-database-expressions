@@ -51,9 +51,9 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
 
         if (
             // skip `DB::table()->select()`
-            ($node instanceof MethodCall && $methodName === 'select')
+            ($node instanceof MethodCall && 'select' === $methodName)
             // match `DB::select()` or `Model::selectRaw()`
-            || !($methodName === 'select' || str_ends_with($methodName, 'Raw'))
+            || !('select' === $methodName || str_ends_with($methodName, 'Raw'))
             // match `DB::raw()`
             || !str_ends_with($childClassName, 'DB') || 'raw' !== $childMethodName
         ) {
