@@ -45,7 +45,7 @@ use Remarkablemark\RectorLaravelDatabaseExpressions\LaravelDatabaseExpressionsRe
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
-        __DIR__ . '/tests',
+        __DIR__,
     ]);
     $rectorConfig->rule(LaravelDatabaseExpressionsRector::class);
 };
