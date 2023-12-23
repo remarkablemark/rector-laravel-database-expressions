@@ -82,17 +82,13 @@ vendor/bin/rector process --clear-cache
 ### Before
 
 ```php
-$orders = DB::table('orders')
-    ->selectRaw(DB::raw('price * ? as price_with_tax'), [1.0825])
-    ->get();
+DB::select(DB::raw('select 1'));
 ```
 
 ### After
 
 ```php
-$orders = DB::table('orders')
-    ->selectRaw(DB::raw('price * ? as price_with_tax')->getValue(DB::getQueryGrammar()), [1.0825])
-    ->get();
+DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));
 ```
 
 ## License
