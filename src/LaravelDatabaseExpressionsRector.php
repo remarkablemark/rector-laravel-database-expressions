@@ -21,8 +21,8 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
         return new RuleDefinition(
             'Fix Laravel 10 database expressions', [
                 new CodeSample(
-                    "DB::select(DB::raw('select 1'));",
-                    "DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));"
+                    "DB::table('orders')->selectRaw(DB::raw('price * ? as price_with_tax'), [1.0825])->get();",
+                    "DB::table('orders')->selectRaw('price * ? as price_with_tax', [1.0825])->get();",
                 )
             ]
         );
@@ -42,13 +42,16 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
     public function refactor(Node $node): ?Node
     {
         /** @var Node */
-        $subNode = $node->args[0]->value ?? null;
+        $childNode = $node->args[0]->value ?? null;
+
+        $className = $this->getName($node->name);
+        $childClassName = isset($childNode->class) ? $this->getName($childNode->class) : '';
+        $childMethodName = isset($childNode->name) ? $this->getName($childNode->name) : '';
 
         if (
-            ! isset($subNode->class) ||
-            $this->getName($node->name) !== 'select' ||
-            strpos($this->getName($subNode->class), 'DB') === false ||
-            $this->getName($subNode->name) !== 'raw'
+            ! str_ends_with($className, 'Raw') ||
+            ! str_ends_with($childClassName, 'DB') ||
+            $childMethodName !== 'raw'
         ) {
             return null;
         }
@@ -61,7 +64,7 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
         );
 
         $node->args[0]->value = new MethodCall(
-            $subNode,
+            $childNode,
             new Identifier('getValue'),
             $arguments
         );
