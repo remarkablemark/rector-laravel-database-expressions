@@ -19,11 +19,12 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Fix Laravel 10 database expressions', [
+            'Fix Laravel 10 database expressions',
+            [
                 new CodeSample(
                     "DB::table('orders')->selectRaw(DB::raw('price * ? as price_with_tax'), [1.0825])->get();",
                     "DB::table('orders')->selectRaw('price * ? as price_with_tax', [1.0825])->get();",
-                )
+                ),
             ]
         );
     }
@@ -49,16 +50,16 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
         $childMethodName = isset($childNode->name) ? $this->getName($childNode->name) : '';
 
         if (
-            ! str_ends_with($className, 'Raw') ||
-            ! str_ends_with($childClassName, 'DB') ||
-            $childMethodName !== 'raw'
+            !str_ends_with($className, 'Raw')
+            || !str_ends_with($childClassName, 'DB')
+            || 'raw' !== $childMethodName
         ) {
             return null;
         }
 
         $arguments[] = new Arg(
             new StaticCall(
-            new Name('DB'),
+                new Name('DB'),
                 'getQueryGrammar'
             )
         );
