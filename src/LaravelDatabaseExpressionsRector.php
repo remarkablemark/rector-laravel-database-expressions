@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace Remarkablemark\RectorLaravelDatabaseExpressions;
 
 use PhpParser\Node;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\Name;
 use Rector\Core\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -23,7 +20,7 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
             [
                 new CodeSample(
                     "DB::select(DB::raw('select 1'));",
-                    "DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));"
+                    "DB::select('select 1');"
                 ),
             ]
         );
@@ -60,18 +57,7 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
             return null;
         }
 
-        $arguments[] = new Arg(
-            new StaticCall(
-                new Name('DB'),
-                'getQueryGrammar'
-            )
-        );
-
-        $node->args[0]->value = new MethodCall(
-            $childNode,
-            new Identifier('getValue'),
-            $arguments
-        );
+        $node->args[0]->value = $childNode->args[0]->value;
 
         return $node;
     }

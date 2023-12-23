@@ -88,7 +88,7 @@ DB::select(DB::raw('select 1'));
 ### After
 
 ```php
-DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));
+DB::select('select 1');
 ```
 
 ## License
