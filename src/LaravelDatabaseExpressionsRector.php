@@ -22,8 +22,8 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
             'Fix Laravel 10 database expressions',
             [
                 new CodeSample(
-                    "DB::table('orders')->selectRaw(DB::raw('price * ? as price_with_tax'), [1.0825])->get();",
-                    "DB::table('orders')->selectRaw('price * ? as price_with_tax', [1.0825])->get();",
+                    "DB::select(DB::raw('select 1'));",
+                    "DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));"
                 ),
             ]
         );
@@ -45,14 +45,17 @@ final class LaravelDatabaseExpressionsRector extends AbstractRector
         /** @var Node */
         $childNode = $node->args[0]->value ?? null;
 
-        $className = $this->getName($node->name);
+        $methodName = $this->getName($node->name);
         $childClassName = isset($childNode->class) ? $this->getName($childNode->class) : '';
         $childMethodName = isset($childNode->name) ? $this->getName($childNode->name) : '';
 
         if (
-            !str_ends_with($className, 'Raw')
-            || !str_ends_with($childClassName, 'DB')
-            || 'raw' !== $childMethodName
+            // skip `DB::table()->select()`
+            ($node instanceof MethodCall && 'select' === $methodName)
+            // match `DB::select()` or `Model::selectRaw()`
+            || !('select' === $methodName || str_ends_with($methodName, 'Raw'))
+            // match `DB::raw()`
+            || !str_ends_with($childClassName, 'DB') || 'raw' !== $childMethodName
         ) {
             return null;
         }

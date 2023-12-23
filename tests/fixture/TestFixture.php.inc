@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\DB;
 
-DB::select(DB::raw('select 1'));
+DB::select(DB::raw('select 1')->getValue(DB::getQueryGrammar()));
 
 DB::select(
-    DB::raw('select 2')
+    DB::raw('select 2')->getValue(DB::getQueryGrammar())
 );
 
 $orders = DB::table('orders')
