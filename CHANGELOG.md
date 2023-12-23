@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.4...v1.1.0) (2023-12-23)
+
+
+### Features
+
+* replace `DB::raw()` with first argument string ([e1972dc](https://github.com/remarkablemark/rector-laravel-database-expressions/commit/e1972dc8a3ab9beb080e74691da74d0cf5c41886))
+
 ## [1.0.4](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.3...v1.0.4) (2023-12-23)
 
 
