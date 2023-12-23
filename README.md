@@ -21,7 +21,7 @@ From [Laravel 10](https://laravel.com/docs/10.x/upgrade#database-expressions):
 
 ## Requirements
 
-PHP >=7.2
+PHP >=8.0
 
 ## Install
 
