@@ -19,13 +19,7 @@ function select5() {
     $db->select('select 5');
 }
 
-DB::select(DB::raw('select 6'));
-
-DB::select(
-    DB::raw('select 7')
-);
-
-$db->select(DB::raw('select 8'));
+$db->select(DB::raw('select 6'));
 
 $orders = DB::table('orders')
     ->select('department', DB::raw('SUM(price) as total_sales'))

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Remarkablemark\Tests\RectorExample;
+namespace Remarkablemark\Tests\RectorLaravelDatabaseExpressions;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
@@ -12,7 +12,7 @@ use Rector\Testing\PHPUnit\AbstractRectorTestCase;
  *
  * @coversNothing
  */
-final class ExampleRectorTest extends AbstractRectorTestCase
+final class LaravelDatabaseExpressionsRectorTest extends AbstractRectorTestCase
 {
     /**
      * @dataProvider provideCases
