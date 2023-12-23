@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.3...v1.0.4) (2023-12-23)
+
+
+### Bug Fixes
+
+* revert `DB::raw` inside `DB::select` regression ([6d99dfa](https://github.com/remarkablemark/rector-laravel-database-expressions/commit/6d99dfab643deab1b03bc2fb280c52f750086b72))
+
 ## [1.0.3](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.2...v1.0.3) (2023-12-23)
 
 
