@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.2...v1.0.3) (2023-12-23)
+
+
+### Bug Fixes
+
+* refactor only when `DB::raw` is inside of a `*Raw` method ([81f70eb](https://github.com/remarkablemark/rector-laravel-database-expressions/commit/81f70eb027db44569f1131e7102dc27884e0c589))
+
 ## [1.0.2](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.1...v1.0.2) (2023-12-23)
 
 
