@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.1.0...v2.0.0) (2024-02-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* update import to support rector v1
+
+### Code Refactoring
+
+* update rector import ([7631606](https://github.com/remarkablemark/rector-laravel-database-expressions/commit/76316062383d03af3f8fdc2492e4cd2fe866bc58))
+
 ## [1.1.0](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.0.4...v1.1.0) (2023-12-23)
 
 
