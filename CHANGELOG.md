@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v2.0.0...v2.0.1) (2025-03-07)
+
+
+### Miscellaneous Chores
+
+* **github:** delete FUNDING.yml ([b6e83fd](https://github.com/remarkablemark/rector-laravel-database-expressions/commit/b6e83fd9075c06d47c35c047a7e588cb8371c124))
+
 ## [2.0.0](https://github.com/remarkablemark/rector-laravel-database-expressions/compare/v1.1.0...v2.0.0) (2024-02-26)
 
 
